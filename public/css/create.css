@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+/* ::selection {
+  background: rgba(255, 18, 94, 0.5);
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu";
+}
+
+
+body {
+    /* background: url('/img/background5.png') no-repeat center center fixed;
+    background-size: cover; */
+    margin: 0;
+    padding: 0;
+    background-color: #141415;
+}
+
+
+#title{
+    color: white;
+    text-align: center;
+    font-size: 50px;
+    z-index: 100;
+    position: relative;
+
+    
+}
+#subtitle{
+    color: white;
+    text-align: center;
+    font-size: 20px;
+}
+#link{
+    color: white;
+    z-index: 100; 
+    
+}
+
+#back{
+    color: white;
+    text-align: center;
+    z-index: 100;
+    position: relative;
+}
+
+#svg1 {
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+#gameButton{
+    font-size:80px;
+}
+#gameButton:hover{
+    cursor: pointer;
+}
+
+/* 
+.card {
+display: flex;
+width: 250px;
+height: 300px;
+color: #fff;
+border: 1px solid rgba(255, 255, 255, 0.3);
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+align-items: center;
+float: left;
+justify-content: center;
+
+} */
+
+.h2 {
+    z-index: 0;
+}
+
+#game-list{
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Distanza tra le carte */
+    padding: 50px;
+    margin: 50px;
+}
+/* Stile delle carte */
+/* .card {
+    width: 250px;
+    height: 320px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+} */
+
+
+
+
+.delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none; /* Trasparente ma evidente */
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s ease;
+}
+
+.card:hover .delete-btn {
+    opacity: 1; /* Appare solo al passaggio del mouse */
+    transform: scale(1.1);
+}
+
+.delete-btn:hover {
+    opacity: 0.8;
+}
+
+#svg2 {
+    width: 20px; 
+    margin-top: -8px;
+    margin-right: 15px;
+}
+
+
+.card {
+    position: relative;
+    width: 250px;
+    height: 320px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.3s ease-in-out;
+    z-index: 100;
+}
+
+/* Glow dinamico */
+.glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 16px;
+    background: none;
+    transition: background 0.2s ease-in-out;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Occupa tutto lo schermo */
+    height: 100vh;
+    z-index: 0; /* Sta sotto il form */
+}

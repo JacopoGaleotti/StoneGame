@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Join | StoneGame</title>
+        <link rel="stylesheet" href="css/index.css">
+        <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        
+        <!-- Carica prima la libreria Spline -->
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.68/build/spline-viewer.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div id="BlurBox" class="BlurBox">
+                <form action="/player/">
+                    <div class="form-field">
+                        <div id="central-box">
+                            <label id="label">Nome</label>
+                            <input id="name" type="text" name="name" autofocus/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <div id="central-box">
+                            <label id="label">Game Pin</label>
+                            <input id="pin" type="number" name="pin"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-field">
+                        <button id="joinButton">Join</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <center><a href="/create/" id="host">Se sei un host o vuoi creare uno StoneGame clicca qui!</a></center>
+
+        <!-- Spline Viewer -->
+        <spline-viewer id="splineScene" url="https://prod.spline.design/CQxR4i37cydeC2x0/scene.splinecode"></spline-viewer>
+                <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const splineScene = document.getElementById("splineScene");
+                const loginForm = document.getElementById("BlurBox");
+                let isFormVisible = false; // Variabile per il toggle
+        
+                if (!splineScene) {
+                    console.error("Spline Viewer non caricato!");
+                    return;
+                }
+        
+                splineScene.addEventListener("click", () => {
+                    isFormVisible = !isFormVisible; // Invertiamo lo stato
+                    if (isFormVisible) {
+                        loginForm.classList.add("active");
+                    } else {
+                        loginForm.classList.remove("active");
+                    }
+                    console.log("Click su Spline! Stato form:", isFormVisible ? "Visibile" : "Nascosto");
+                });
+            });
+        </script>
+        
+        
+           
+
+    </body>
+</html>

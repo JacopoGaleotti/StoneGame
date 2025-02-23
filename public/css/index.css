@@ -1,0 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+/* ::selection {
+  background: rgba(255, 18, 94, 0.5);
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu";
+}
+
+
+body {
+    /* background: url('/img/background5.png') no-repeat center center fixed;
+    background-size: cover; */
+    margin: 0;
+    padding: 0;
+    background-color: #141415;
+}
+
+form {
+    z-index: 100; 
+}
+#titolo{
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
+#name{
+    width: 50%;
+    margin: 8px 0;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
+
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: white;
+    opacity: 0.8;
+    color: #3A3B3A;
+    border: none;
+}
+#pin{
+    width: 50%;
+    padding: 10px;
+    margin: 8px 0;
+    display: block;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 1rem;
+    text-align: center;
+    color:#3A3B3A;
+    border: none;
+}
+#label{
+    display: block;
+    text-align: center;
+    font-size: 25px;
+    color: white;
+}
+/* #host{
+    color: white;
+    text-decoration: none;
+    z-index: 5;
+}
+#host:hover{
+    text-decoration:underline;
+} */
+
+#host {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    text-decoration: none;
+    z-index: 10; /* Ora è sopra tutto */
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+#host:hover {
+    text-decoration: underline;
+}
+
+#joinButton{
+    width: 50%;
+    color: #3A3B3A;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 20px;
+    background-color: white;
+}
+
+
+.container {
+    text-align: center;
+    padding: 50px 20px;
+    transition: transform 0.5s ease-in-out;
+  }
+
+
+/* Spline Viewer a schermo intero */
+spline-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;  /* Occupa tutto lo schermo */
+    height: 100vh;
+    z-index: 4; /* Sta sotto il form */
+}
+
+/* BlurBox inizialmente nascosto, poi appare dopo il click */
+/* #BlurBox {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 3; 
+
+    backdrop-filter: blur(20px); 
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 700px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    transition: all 0.5s ease;
+    animation: colorChange 5s infinite alternate; 
+    margin: auto;
+    width: 90%; 
+    margin-top: 11%;
+} */
+
+#BlurBox {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0);
+    border-radius: 15px;
+    z-index: 5; /* Ora è sopra Spline */
+    backdrop-filter: blur(20px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+    text-align: center;
+    transition: all 0.5s ease;
+    animation: colorChange 5s infinite alternate;
+    width: 90%;
+    max-width: 700px;
+    margin-top: 11%;
+    opacity: 0;
+    pointer-events: none; /* Inizialmente non riceve input */
+    padding-top: 40px; 
+    padding-bottom: 40px; 
+}
+
+/* Quando il BlurBox è attivo, diventa interattivo */
+#BlurBox.active {
+    display: block;
+    opacity: 1;
+    pointer-events: all; /* Ora è cliccabile */
+}
+
+
+
+#central-box {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    width: 70%;
+    transition: transform 0.5s ease-in-out;
+}
+  
