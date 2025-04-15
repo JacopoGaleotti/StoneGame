@@ -73,6 +73,9 @@ socket.on('questionOver', function(data){
     document.getElementById('answer2').style.visibility = "hidden";
     document.getElementById('answer3').style.visibility = "hidden";
     document.getElementById('answer4').style.visibility = "hidden";
+    let imgEl = document.getElementById('question-image');
+    if (imgEl) imgEl.style.display = "none";
+
     socket.emit('getScore');
 });
 
@@ -90,8 +93,42 @@ socket.on('nextQuestionPlayer', function(){
     document.getElementById('answer4').style.visibility = "visible";
     document.getElementById('message').style.display = "none";
     document.body.style.backgroundColor = "#141415";
+    let imgEl = document.getElementById('question-image');
+    if (imgEl) imgEl.style.display = "block";
 
 });
+
+//
+socket.on('sendImageToPlayers', function(data) {
+    let imgContainer = document.getElementById('question-image');
+
+    // Se non esiste l'elemento, lo creiamo
+    if (!imgContainer) {
+        imgContainer = document.createElement('img');
+        imgContainer.id = 'question-image';
+        imgContainer.style.maxWidth = "90%";
+        imgContainer.style.marginTop = "30px";
+        imgContainer.style.display = "none"; // default hidden
+        document.body.appendChild(imgContainer);
+    }
+
+    // Se è presente un'immagine valida
+    if (data.image && data.image.trim() !== "") {
+        imgContainer.onload = () => {
+            imgContainer.style.display = "block";
+        };
+        imgContainer.onerror = () => {
+            imgContainer.style.display = "none";
+        };
+        imgContainer.src = data.image;
+    } else {
+        imgContainer.style.display = "none";
+        imgContainer.src = ""; // Reset in ogni caso
+    }
+});
+
+
+//
 
 socket.on('hostDisconnect', function(){
     window.location.href = "../../";

@@ -12,7 +12,8 @@ function updateDatabase(){
         var answer4 = document.getElementById(i + 'a4').value;
         var correct = document.getElementById('correct' + i).value;
         var answers = [answer1, answer2, answer3, answer4];
-        questions.push({"question": question, "answers": answers, "correct": correct})
+        var image = document.getElementById('img' + i).value;
+        questions.push({"question": question, "answers": answers, "correct": correct, "image": image})
     }
     
     var quiz = {id: 0, "name": name, "questions": questions};
@@ -43,6 +44,16 @@ function addQuestion(){
     
     var correctLabel = document.createElement('label');
     var correctField = document.createElement('input');
+
+    var imageLabel = document.createElement('label');
+    var imageField = document.createElement('input');
+    imageLabel.innerHTML = "URL immagine: ";
+    imageField.setAttribute('id', 'img' + String(questionNum));
+    imageField.setAttribute('type', 'text');
+
+    newQuestionDiv.appendChild(imageLabel);
+    newQuestionDiv.appendChild(imageField);
+
     
     questionLabel.innerHTML = "Question " + String(questionNum) + ": ";
     questionField.setAttribute('class', 'question');

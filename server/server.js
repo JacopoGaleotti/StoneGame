@@ -122,6 +122,9 @@ io.on('connection', (socket) => {
                     var answer3 = res[0].questions[0].answers[2];
                     var answer4 = res[0].questions[0].answers[3];
                     var correctAnswer = res[0].questions[0].correct;
+                    //
+                    var image = res[0].questions[0].image || "";
+                    //
                     
                     socket.emit('gameQuestions', {
                         q1: question,
@@ -132,7 +135,11 @@ io.on('connection', (socket) => {
                         correct: correctAnswer,
                         playersInGame: playerData.length
                     });
-                    db.close();
+                    setTimeout(() => {
+                        io.to(game.pin).emit('sendImageToPlayers', { image });
+                        console.log("✔ Immagine iniziale inviata:", image);
+                    }, 500);
+                     db.close();
                 });
             });
             
@@ -142,6 +149,7 @@ io.on('connection', (socket) => {
         }else{
             socket.emit('noGameFound');//No game was found, redirect user
         }
+
     });
     
     //When player connects for the first time
@@ -358,6 +366,9 @@ io.on('connection', (socket) => {
                         var answer2 = res[0].questions[questionNum].answers[1];
                         var answer3 = res[0].questions[questionNum].answers[2];
                         var answer4 = res[0].questions[questionNum].answers[3];
+                        //
+                        var image = res[0].questions[questionNum].image || "";
+                        //
                         var correctAnswer = res[0].questions[questionNum].correct;
 
                         socket.emit('gameQuestions', {
@@ -370,6 +381,13 @@ io.on('connection', (socket) => {
                             playersInGame: playerData.length
                         });
                         db.close();
+
+                        setTimeout(() => {
+                            io.to(game.pin).emit('sendImageToPlayers', { image });
+                            console.log("✔ Immagine inviata ai player:", image);
+                        }, 500); // attende mezzo secondo per assicurarsi che i client siano pronti
+                        
+
                     }else{
                         var playersInGame = players.getPlayers(game.hostId);
                         var first = {name: "", score: 0};
@@ -453,6 +471,7 @@ io.on('connection', (socket) => {
             });
         
         io.to(game.pin).emit('nextQuestionPlayer');
+
     });
 
 
