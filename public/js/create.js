@@ -117,9 +117,12 @@ socket.on("gameNamesData", function (data) {
         card.classList.add("card");
         card.setAttribute("data-tilt", "");
         card.setAttribute("data-tilt-scale", "1.1");
+        card.setAttribute("data-id", quizId);
 
         card.addEventListener("click", function () {
-            startGame(quizId);
+            const id = this.getAttribute("data-id");
+            // startGame(quizId);
+            startGame(id);
         });
 
         // Creazione dello strato glow
@@ -139,7 +142,9 @@ socket.on("gameNamesData", function (data) {
         deleteBtn.classList.add("delete-btn");
         deleteBtn.addEventListener("click", function (event) {
             event.stopPropagation();
-            deleteQuiz(quizId, card);
+            const id = this.parentElement.getAttribute("data-id");
+            // deleteQuiz(quizId, card);
+            deleteQuiz(id, this.parentElement);
         });
 
         // Aggiunta degli elementi alla card
