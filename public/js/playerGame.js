@@ -9,7 +9,7 @@ var params = jQuery.deparam(window.location.search); //Gets the id from url
 socket.on('connect', function() {
     //Tell server that it is host connection from game view
     socket.emit('player-join-game', params);
-    
+
     document.getElementById('answer1').style.visibility = "visible";
     document.getElementById('answer2').style.visibility = "visible";
     document.getElementById('answer3').style.visibility = "visible";
@@ -23,9 +23,9 @@ socket.on('noGameFound', function(){
 function answerSubmitted(num){
     if(playerAnswered == false){
         playerAnswered = true;
-        
+
         socket.emit('playerAnswer', num);//Sends player answer to server
-        
+
         //Hiding buttons from user
         document.getElementById('answer1').style.visibility = "hidden";
         document.getElementById('answer2').style.visibility = "hidden";
@@ -33,7 +33,7 @@ function answerSubmitted(num){
         document.getElementById('answer4').style.visibility = "hidden";
         document.getElementById('message').style.display = "block";
         document.getElementById('message').innerHTML = "Answer Submitted! Waiting on other players...";
-        
+
     }
 }
 
@@ -44,17 +44,30 @@ socket.on('answerResult', function(data){
     }
 });
 
-
-
 socket.on('questionOver', function(data){
     if(correct == true){
-        document.body.style.backgroundColor = "#4CAF50";
-        document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "Correct!";
+        document.body.style.backgroundColor = "#141415";
+        document.body.style.overflow = "hidden";
+        document.getElementById('message').style.display = "inline-block";
+        document.getElementById('message').style.color = "white";
+        document.getElementById('message').style.backgroundColor = "#4CAF50";
+        document.getElementById('message').style.padding = "15px";
+        document.getElementById('message').style.borderRadius = "25px";
+        document.getElementById('message').style.marginTop = "300px";
+        document.getElementById('message').style.marginLeft = "600px";
+        document.getElementById('message').style.fontSize = "100px";
+        document.getElementById('message').innerHTML = "Corretto!";
     }else{
-        document.body.style.backgroundColor = "#f94a1e";
-        document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "Incorrect!";
+        document.body.style.backgroundColor = "#141415";
+        document.getElementById('message').style.display = "inline-block";
+        document.getElementById('message').style.color = "white";
+        document.getElementById('message').style.backgroundColor = "#f94a1e";
+        document.getElementById('message').style.padding = "15px";
+        document.getElementById('message').style.borderRadius = "25px";
+        document.getElementById('message').style.marginTop = "300px";
+        document.getElementById('message').style.marginLeft = "600px";
+        document.getElementById('message').style.fontSize = "100px";
+        document.getElementById('message').innerHTML = "Sbagliato!";
     }
     document.getElementById('answer1').style.visibility = "hidden";
     document.getElementById('answer2').style.visibility = "hidden";
@@ -70,14 +83,14 @@ socket.on('newScore', function(data){
 socket.on('nextQuestionPlayer', function(){
     correct = false;
     playerAnswered = false;
-    
+
     document.getElementById('answer1').style.visibility = "visible";
     document.getElementById('answer2').style.visibility = "visible";
     document.getElementById('answer3').style.visibility = "visible";
     document.getElementById('answer4').style.visibility = "visible";
     document.getElementById('message').style.display = "none";
-    document.body.style.backgroundColor = "white";
-    
+    document.body.style.backgroundColor = "#141415";
+
 });
 
 socket.on('hostDisconnect', function(){
@@ -87,21 +100,25 @@ socket.on('hostDisconnect', function(){
 socket.on('playerGameData', function(data){
    for(var i = 0; i < data.length; i++){
        if(data[i].playerId == socket.id){
-           document.getElementById('nameText').innerHTML = "Name: " + data[i].name;
-           document.getElementById('scoreText').innerHTML = "Score: " + data[i].gameData.score;
+           document.getElementById('nameText').innerHTML = "Nome: " + data[i].name;
+           document.getElementById('scoreText').innerHTML = "Punteggio: " + data[i].gameData.score;
        }
    }
 });
 
 socket.on('GameOver', function(){
-    document.body.style.backgroundColor = "#FFFFFF";
+    document.body.style.backgroundColor = "#141415";
     document.getElementById('answer1').style.visibility = "hidden";
     document.getElementById('answer2').style.visibility = "hidden";
     document.getElementById('answer3').style.visibility = "hidden";
     document.getElementById('answer4').style.visibility = "hidden";
-    document.getElementById('message').style.display = "block";
+    document.getElementById('message').style.display = "inline-block";
+    document.getElementById('message').style.color = "#141415";
+    document.getElementById('message').style.backgroundColor = "white";
+    document.getElementById('message').style.padding = "15px";
+    document.getElementById('message').style.borderRadius = "25px";
+    document.getElementById('message').style.marginTop = "300px";
+    document.getElementById('message').style.marginLeft = "540px";
+    document.getElementById('message').style.fontSize = "100px";
     document.getElementById('message').innerHTML = "GAME OVER";
 });
-
-
-

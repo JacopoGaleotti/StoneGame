@@ -103,24 +103,3 @@ function cancelQuiz(){
 socket.on('startGameFromCreator', function(data){
     window.location.href = "../../host/?id=" + data;
 });
-
-function randomColor(){
-    
-    var colors = ['#4CAF50', '#f94a1e', '#3399ff', '#ff9933'];
-    var randomNum = Math.floor(Math.random() * 4);
-    return colors[randomNum];
-}
-
-function setBGColor(){
-    var randColor = randomColor();
-    document.getElementById('question-field').style.backgroundColor = randColor;
-}
-
-
-
-
-
-
-
-
-

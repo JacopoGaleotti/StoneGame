@@ -18,10 +18,9 @@ var players = new Players();
 //Mongodb setup
 var MongoClient = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
-//var url = "mongodb://localhost:27017/";//
-var url = process.env.MONGO_URI;
-// var url = "mongodb://localhost:27017/";
-var url = process.env.MONGO_URI;
+
+var url = "mongodb://localhost:27017/";
+// var url = process.env.MONGO_URI;
 
 
 
@@ -513,5 +512,3 @@ io.on('connection', (socket) => {
     });
     
 });
-
-

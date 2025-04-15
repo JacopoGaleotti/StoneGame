@@ -78,6 +78,6 @@ body {
 
 #svgHome {
     margin-left: 40px;
-    width: 45px
- 
+    width: 45px;
+    cursor: pointer;
 }

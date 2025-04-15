@@ -1,34 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+/* ::selection {
+  background: rgba(255, 18, 94, 0.5);
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu";
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #141415;
+    color: white; 
+}
+
+
 #answer1{
-    background-color: #4CAF50;
-    margin: auto;
+    width: 100%;
+    margin: 20px;
     padding: 30px 20px;
     height: 50%;
-    font-family: 'Raleway', sans-serif;
     font-size: 20px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 179, 186, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 #answer2{
-    background-color: #f94a1e;
-    margin: auto;
+    width: 100%;
+    margin: 20px;
     padding: 30px 20px;
     height: 50%;
-    font-family: 'Raleway', sans-serif;
     font-size: 20px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 186, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 #answer3{
-    background-color: #3399ff;
-    margin: auto;
+    width: 100%;
+    margin: 20px;
     padding: 30px 20px;
     height: 50%;
-    font-family: 'Raleway', sans-serif;
     font-size: 20px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(186, 255, 201, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 #answer4{
-    background-color: #ff9933;
-    margin: auto;
+    width: 100%;
+    margin: 20px;
     padding: 30px 20px;
     height: 50%;
-    font-family: 'Raleway', sans-serif;
     font-size: 20px;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(186, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
 .square{
     border: none;
@@ -58,56 +101,101 @@
 
 #nextQButton{
     display: none;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 15px;
+    resize: none;
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: white;
+
 }
-#question{
-    font-family: 'Raleway', sans-serif;
-}
-#timerText{
-    font-family: 'Raleway', sans-serif;
-}
+
 #num{
-    font-family: 'Tajawal', sans-serif;
     font-size: 35px;
-}
-#playersAnswered{
-    font-family: 'Tajawal', sans-serif;
-}
-#questionNum{
-    font-family: 'Tajawal', sans-serif;
 }
 
 #winner1{
-    font-family: 'Raleway', sans-serif;
     text-align: center;
-    font-size: 30px;
+    font-size: 60px;
     display: none;
+    margin-bottom: 30px;
 }
 #winner2{
-    font-family: 'Raleway', sans-serif;
     text-align: center;
-    font-size: 22px;
+    font-size: 52px;
     display: none;
+    margin-bottom: 30px;
 }
 #winner3{
-    font-family: 'Raleway', sans-serif;
     text-align: center;
-    font-size: 20px;
+    font-size: 46px;
     display: none;
+    margin-bottom: 30px;
 }
 #winner4{
-    font-family: 'Raleway', sans-serif;
     text-align: center;
     display: none;
+    font-size: 40px;
+    margin-bottom: 30px;
 }
 #winner5{
-    font-family: 'Raleway', sans-serif;
     text-align: center;
     display: none;
+    font-size: 40px;
+    margin-bottom: 30px;
 }
 #winnerTitle{
     text-align: center;
-    font-family: 'Raleway', sans-serif;
-    font-size: 35px;
-    color: #3399ff;
+    font-size: 40px;
+    color: white;
     display: none;
+    margin-top: -150px;
+    margin-bottom: 30px;
+}
+
+
+
+.Box {
+    display: flex;
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-top: 70px;
+}
+.Box2 {
+    display: flex;
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-top: 70px;
+}
+
+#question {
+    background-color: white;
+    width: max-content;
+    color: black;
+    margin: auto;
+    display: block;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 60px;
+}
+
+#questionNum {
+    margin-top: 40px;
+    font-size: 20px;
+}
+
+#playersAnswered {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#timerText {
+    margin-top: 30px;
 }

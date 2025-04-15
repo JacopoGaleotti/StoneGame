@@ -1,33 +1,63 @@
-html, body { height: 90%; padding: 0; margin: 0; }
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
+/* ::selection {
+  background: rgba(255, 18, 94, 0.5);
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Ubuntu";
+}
+
+
+body {
+    /* background: url('/img/background5.png') no-repeat center center fixed;
+    background-size: cover; */
+    margin: 0;
+    padding: 0;
+    background-color: #141415;
+}
 button{
-    width: 50%; height: 50%; float: left;
+    width: 300px;
+    height: 250px;
+    margin: auto;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
-#answer1{
-    background-color: #4CAF50;
-}
-#answer2{
-    background-color: #f94a1e;
-}
-#answer3{
-    background-color: #3399ff;
-}
-#answer4{
-    background-color: #ff9933;
+#stats{
+    color: white;
+    font-size: 30px;
+    margin: 20px;
 }
 
 #buttons{
     text-align: center;
 }
 #nameText{
-    font-family: 'Raleway', sans-serif;
     padding: 0px 10px;
 }
 #scoreText{
-    font-family: 'Raleway', sans-serif;
     padding: 0px 10px;
 }
 #message{
-    font-family: 'Raleway', sans-serif;
     text-align: center;
     font-size: 35px;
+}
+
+.Box {
+    display: flex;
+    /* padding-right: 100px;
+    padding-left: 100px; */
+    margin-top: 50px;
+}
+
+#Box1 {
+    margin-top: 100px;
 }
