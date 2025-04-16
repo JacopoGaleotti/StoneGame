@@ -121,9 +121,13 @@ socket.on('sendImageToPlayers', function(data) {
             imgContainer.style.display = "none";
         };
         imgContainer.src = data.image;
+
+        document.body.classList.add('has-image');
+
     } else {
         imgContainer.style.display = "none";
-        imgContainer.src = ""; // Reset in ogni caso
+        imgContainer.src = "";
+        document.body.classList.remove('has-image');
     }
 });
 
