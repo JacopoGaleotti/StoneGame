@@ -63,7 +63,7 @@ button{
 body.has-image .Box {
     flex-wrap: nowrap;
     justify-content: space-around;
-    margin-top: 80px;
+    margin-top: 40px;
     row-gap: 10px;
     column-gap: 100px;
   }
@@ -72,7 +72,7 @@ body.has-image .Box {
   #dynamicImage {
     display: block;
     margin: 0 auto;
-    max-height: 300px;
+    max-height: 500px;
     max-width: 90%;
     margin-top: 40px;
   }

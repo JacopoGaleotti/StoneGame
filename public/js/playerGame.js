@@ -20,22 +20,54 @@ socket.on('noGameFound', function(){
     window.location.href = '../../';//Redirect user to 'join game' page 
 });
 
+// function answerSubmitted(num){
+//     if(playerAnswered == false){
+//         playerAnswered = true;
+
+//         socket.emit('playerAnswer', num);//Sends player answer to server
+
+//         //Hiding buttons from user
+//         document.getElementById('answer1').style.visibility = "hidden";
+//         document.getElementById('answer2').style.visibility = "hidden";
+//         document.getElementById('answer3').style.visibility = "hidden";
+//         document.getElementById('answer4').style.visibility = "hidden";
+//         document.getElementById('message').style.display = "block";
+//         document.getElementById('message').innerHTML = "Answer Submitted! Waiting on other players...";
+
+//     }
+// }
+
 function answerSubmitted(num){
     if(playerAnswered == false){
         playerAnswered = true;
 
-        socket.emit('playerAnswer', num);//Sends player answer to server
+        socket.emit('playerAnswer', num);
 
-        //Hiding buttons from user
         document.getElementById('answer1').style.visibility = "hidden";
         document.getElementById('answer2').style.visibility = "hidden";
         document.getElementById('answer3').style.visibility = "hidden";
         document.getElementById('answer4').style.visibility = "hidden";
-        document.getElementById('message').style.display = "block";
-        document.getElementById('message').innerHTML = "Answer Submitted! Waiting on other players...";
 
+        let imgEl = document.getElementById('question-image');
+        if (imgEl) imgEl.style.display = "none";
+
+        let finalImg = document.getElementById('final-image');
+        if (finalImg) finalImg.style.display = "none";
+
+        const msg = document.getElementById('message');
+        msg.style.display = "block";
+        msg.innerHTML = "Answer Submitted! Waiting on other players...";
+
+        msg.style.color = "white";
+        msg.style.backgroundColor = "#333";
+        msg.style.padding = "15px";
+        msg.style.borderRadius = "25px";
+        msg.style.marginTop = "300px";
+        msg.style.marginLeft = "600px";
+        msg.style.fontSize = "40px";
     }
 }
+
 
 //Get results on last question
 socket.on('answerResult', function(data){
@@ -76,6 +108,13 @@ socket.on('questionOver', function(data){
     let imgEl = document.getElementById('question-image');
     if (imgEl) imgEl.style.display = "none";
 
+    let finaleImg = document.getElementById('final-image');
+    if (finaleImg) {
+        finaleImg.style.display = "none";
+        finaleImg.src = "";
+    }
+
+
     socket.emit('getScore');
 });
 
@@ -95,6 +134,13 @@ socket.on('nextQuestionPlayer', function(){
     document.body.style.backgroundColor = "#141415";
     let imgEl = document.getElementById('question-image');
     if (imgEl) imgEl.style.display = "block";
+
+    let finaleImg = document.getElementById('final-image');
+    if (finaleImg) {
+        finaleImg.style.display = "none";
+        finaleImg.src = "";
+    }
+
 
 });
 
@@ -162,4 +208,25 @@ socket.on('GameOver', function(){
     document.getElementById('message').style.marginLeft = "540px";
     document.getElementById('message').style.fontSize = "100px";
     document.getElementById('message').innerHTML = "GAME OVER";
+
+    let imgEl = document.getElementById('question-image');
+    if (imgEl) {
+        imgEl.style.display = "none";
+        imgEl.src = "";
+        document.body.classList.remove('has-image');
+    }
+
+    let finaleImg = document.getElementById('final-image');
+    if (!finaleImg) {
+        finaleImg = document.createElement('img');
+        finaleImg.id = 'final-image';
+        finaleImg.style.maxWidth = "80%";
+        finaleImg.style.marginTop = "40px";
+        finaleImg.style.display = "block";
+        finaleImg.style.marginLeft = "auto";
+        finaleImg.style.marginRight = "auto";
+        document.body.appendChild(finaleImg);
+    }
+    finaleImg.src = "../../img/light1o.png";
+    finaleImg.style.display = "block";
 });
