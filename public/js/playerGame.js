@@ -62,9 +62,10 @@ function answerSubmitted(num){
         msg.style.backgroundColor = "#333";
         msg.style.padding = "15px";
         msg.style.borderRadius = "25px";
-        msg.style.marginTop = "250px";
-        msg.style.marginLeft = "400px";
-        msg.style.fontSize = "40px";
+        msg.style.marginTop = "300px";
+        msg.style.marginLeft = "600px";
+        msg.style.fontSize = "100px";
+        msg.style.display = "inline-block";
     }
 }
 
