@@ -220,13 +220,7 @@ socket.on('GameOver', function(){
     if (!finaleImg) {
         finaleImg = document.createElement('img');
         finaleImg.id = 'final-image';
-        finaleImg.style.maxWidth = "80%";
-        finaleImg.style.marginTop = "40px";
-        finaleImg.style.display = "block";
-        finaleImg.style.marginLeft = "auto";
-        finaleImg.style.marginRight = "auto";
         document.body.appendChild(finaleImg);
     }
     finaleImg.src = "../../img/light1o.png";
-    finaleImg.style.display = "block";
 });
