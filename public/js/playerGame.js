@@ -56,14 +56,14 @@ function answerSubmitted(num){
 
         const msg = document.getElementById('message');
         msg.style.display = "block";
-        msg.innerHTML = "Answer Submitted! Waiting on other players...";
+        msg.innerHTML = "Aspettando altri giocatori...";
 
         msg.style.color = "white";
         msg.style.backgroundColor = "#333";
         msg.style.padding = "15px";
         msg.style.borderRadius = "25px";
-        msg.style.marginTop = "300px";
-        msg.style.marginLeft = "600px";
+        msg.style.marginTop = "250px";
+        msg.style.marginLeft = "400px";
         msg.style.fontSize = "40px";
     }
 }
