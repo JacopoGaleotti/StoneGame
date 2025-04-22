@@ -55,7 +55,6 @@ function answerSubmitted(num){
         if (finalImg) finalImg.style.display = "none";
 
         const msg = document.getElementById('message');
-        msg.style.display = "block";
         msg.innerHTML = "Aspettando altri giocatori...";
 
         msg.style.color = "white";
