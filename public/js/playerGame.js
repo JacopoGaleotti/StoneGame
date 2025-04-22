@@ -205,6 +205,7 @@ socket.on('GameOver', function(){
     document.getElementById('message').style.padding = "15px";
     document.getElementById('message').style.borderRadius = "25px";
     document.getElementById('message').style.marginLeft = "540px";
+    document.getElementById('message').style.marginTop = "600px";
     document.getElementById('message').style.fontSize = "100px";
     document.getElementById('message').innerHTML = "GAME OVER";
 
