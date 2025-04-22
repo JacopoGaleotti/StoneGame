@@ -75,6 +75,7 @@ body.has-image .Box {
     max-height: 500px;
     max-width: 90%;
     margin-top: 40px;
+    margin-left: 470px;
   }
 
   #final-image {
@@ -83,6 +84,6 @@ body.has-image .Box {
     max-height: 600px;
     max-width: 90%;
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 23%;
   }
