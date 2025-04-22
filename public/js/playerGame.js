@@ -55,15 +55,15 @@ function answerSubmitted(num){
         if (finalImg) finalImg.style.display = "none";
 
         const msg = document.getElementById('message');
-        msg.innerHTML = "Aspettando altri giocatori...";
+        msg.innerHTML = "Aspettando gli altri giocatori...";
 
         msg.style.color = "white";
         msg.style.backgroundColor = "#333";
         msg.style.padding = "15px";
         msg.style.borderRadius = "25px";
         msg.style.marginTop = "300px";
-        msg.style.marginLeft = "600px";
-        msg.style.fontSize = "100px";
+        msg.style.marginLeft = "350px";
+        msg.style.fontSize = "70px";
         msg.style.display = "inline-block";
     }
 }
