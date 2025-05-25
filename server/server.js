@@ -43,7 +43,7 @@ app.delete("/deleteQuiz/:id", async (req, res) => {
     const quizId = parseInt(req.params.id); // Convertiamo in numero
 
     try {
-        const client = await MongoClient.connect(url, { useUnifiedTopology: true });
+        const client = await MongoClient.connect(url);
         const db = client.db("kahootDB");
         const result = await db.collection("kahootGames").deleteOne({ id: quizId });
 
@@ -67,7 +67,7 @@ io.on('connection', (socket) => {
     socket.on('host-join', (data) =>{
         
         //Check to see if id passed in url corresponds to id of kahoot game in database
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+        MongoClient.connect(url, function(err, db) {
             if (err) throw err;
             var dbo = db.db("kahootDB");
             var query = { id:  parseInt(data.id)};
@@ -113,7 +113,7 @@ io.on('connection', (socket) => {
                 }
             }
             var gameid = game.gameData['gameid'];
-            MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            MongoClient.connect(url, function(err, db){
                 if (err) throw err;
     
                 var dbo = db.db('kahootDB');
@@ -262,7 +262,7 @@ io.on('connection', (socket) => {
             var gameQuestion = game.gameData.question;
             var gameid = game.gameData.gameid;
             
-            MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            MongoClient.connect(url, function(err, db){
                 if (err) throw err;
     
                 var dbo = db.db('kahootDB');
@@ -323,7 +323,7 @@ io.on('connection', (socket) => {
         var gameQuestion = game.gameData.question;
         var gameid = game.gameData.gameid;
             
-            MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+            MongoClient.connect(url, function(err, db){
                 if (err) throw err;
     
                 var dbo = db.db('kahootDB');
@@ -355,7 +355,7 @@ io.on('connection', (socket) => {
         
         
         
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+        MongoClient.connect(url, function(err, db){
                 if (err) throw err;
     
                 var dbo = db.db('kahootDB');
@@ -493,7 +493,7 @@ io.on('connection', (socket) => {
     //Give user game names data
     socket.on('requestDbNames', function(){
         
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+        MongoClient.connect(url, function(err, db){
             if (err) throw err;
     
             var dbo = db.db('kahootDB');
@@ -509,7 +509,7 @@ io.on('connection', (socket) => {
     
     
     socket.on('newQuiz', function(data){
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+        MongoClient.connect(url, function(err, db){
             if (err) throw err;
             var dbo = db.db('kahootDB');
             dbo.collection('kahootGames').find({}).toArray(function(err, result){
