@@ -549,7 +549,7 @@ const { LiveGames } = require("./utils/liveGames");
 const { Players } = require("./utils/players");
 
 // Models
-const Quiz = require("./models/Quiz.js"); // lo creiamo sotto
+const Quiz = require("../models/Quiz.js"); // lo creiamo sotto
 
 // App setup
 const publicPath = path.join(__dirname, "../public");
