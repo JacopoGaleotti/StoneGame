@@ -542,14 +542,14 @@ const path = require("path");
 const http = require("http");
 const express = require("express");
 const socketIO = require("socket.io");
+const mongoose = require("mongoose");
 
 // Import classes
 const { LiveGames } = require("./utils/liveGames");
 const { Players } = require("./utils/players");
 
-// MongoDB
-const { MongoClient } = require("mongodb");
-const mongoose = require("mongoose");
+// Models
+const Quiz = require("./models/Quiz"); // lo creiamo sotto
 
 // App setup
 const publicPath = path.join(__dirname, "../public");
@@ -559,26 +559,21 @@ const io = socketIO(server);
 const games = new LiveGames();
 const players = new Players();
 
-// MongoDB connection
-const url = process.env.MONGO_URI;
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true });
+// MongoDB connection via Mongoose
+const mongoURI = process.env.MONGO_URI;
 
-let db;
-
-async function connectToDB() {
-  try {
-    await client.connect();
-    db = client.db("kahootDB");
-    console.log("✅ Connessione a MongoDB avvenuta con successo");
-  } catch (error) {
-    console.error("❌ Errore connessione MongoDB:", error);
-    process.exit(1); // Ferma l'app se la connessione fallisce
-  }
-}
-
-connectToDB();
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ Connessione a MongoDB con Mongoose avvenuta con successo"))
+.catch(err => {
+  console.error("❌ Errore connessione MongoDB:", err);
+  process.exit(1);
+});
 
 app.use(express.static(publicPath));
+app.use(express.json());
 
 // Start server
 const PORT = process.env.PORT || 3000;
@@ -586,17 +581,17 @@ server.listen(PORT, () => {
   console.log("Server avviato sulla porta", PORT);
 });
 
-// Elimina un quiz
+// API: Elimina un quiz
 app.delete("/deleteQuiz/:id", async (req, res) => {
   const quizId = parseInt(req.params.id);
 
   try {
-    const result = await db.collection("kahootGames").deleteOne({ id: quizId });
+    const result = await Quiz.deleteOne({ id: quizId });
 
     if (result.deletedCount > 0) {
       res.json({ success: true });
     } else {
-      res.json({ success: false, message: "Quiz non trovato" });
+      res.status(404).json({ success: false, message: "Quiz non trovato" });
     }
   } catch (error) {
     console.error("Errore eliminazione quiz:", error);
@@ -609,9 +604,9 @@ io.on("connection", (socket) => {
 
   socket.on("host-join", async (data) => {
     try {
-      const result = await db.collection("kahootGames").findOne({ id: parseInt(data.id) });
+      const quiz = await Quiz.findOne({ id: parseInt(data.id) });
 
-      if (result) {
+      if (quiz) {
         const gamePin = Math.floor(Math.random() * 90000) + 10000;
 
         games.addGame(gamePin, socket.id, false, {
@@ -648,10 +643,10 @@ io.on("connection", (socket) => {
         if (p.hostId === oldHostId) p.hostId = socket.id;
       });
 
-      const result = await db.collection("kahootGames").findOne({ id: parseInt(game.gameData.gameid) });
+      const quiz = await Quiz.findOne({ id: parseInt(game.gameData.gameid) });
 
-      if (result) {
-        const q = result.questions[0];
+      if (quiz) {
+        const q = quiz.questions[0];
         socket.emit("gameQuestions", {
           q1: q.question,
           a1: q.answers[0],
@@ -712,16 +707,11 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     const game = games.getGame(socket.id);
-    if (game) {
-      if (!game.gameLive) {
-        games.removeGame(socket.id);
-        console.log("Gioco terminato con pin:", game.pin);
-
-        const playersToRemove = players.getPlayers(game.hostId);
-        playersToRemove.forEach((p) => players.removePlayer(p.playerId));
-        io.to(game.pin).emit("hostDisconnect");
-        socket.leave(game.pin);
-      }
+    if (game && !game.gameLive) {
+      games.removeGame(socket.id);
+      const playersToRemove = players.getPlayers(game.hostId);
+      playersToRemove.forEach((p) => players.removePlayer(p.playerId));
+      io.to(game.pin).emit("hostDisconnect");
     } else {
       const player = players.getPlayer(socket.id);
       if (player) {
@@ -730,7 +720,6 @@ io.on("connection", (socket) => {
           players.removePlayer(socket.id);
           const playersInGame = players.getPlayers(player.hostId);
           io.to(game.pin).emit("updatePlayerLobby", playersInGame);
-          socket.leave(game.pin);
         }
       }
     }
@@ -746,10 +735,10 @@ io.on("connection", (socket) => {
       player.gameData.answer = num;
       game.gameData.playersAnswered++;
 
-      const result = await db.collection("kahootGames").findOne({ id: parseInt(game.gameData.gameid) });
-      if (!result) return;
+      const quiz = await Quiz.findOne({ id: parseInt(game.gameData.gameid) });
+      if (!quiz) return;
 
-      const correctAnswer = result.questions[game.gameData.question - 1].correct;
+      const correctAnswer = quiz.questions[game.gameData.question - 1].correct;
       if (num === correctAnswer) {
         player.gameData.score += 100;
       }
@@ -760,3 +749,4 @@ io.on("connection", (socket) => {
   });
 
 });
+
