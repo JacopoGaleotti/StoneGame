@@ -100,9 +100,7 @@ function addQuestion(){
     
     questionsDiv.appendChild(document.createElement('br'));//Creates a break between each question
     questionsDiv.appendChild(newQuestionDiv);//Adds the question div to the screen
-    
-    newQuestionDiv.style.backgroundColor = randomColor();
-}
+    }
 
 //Called when user wants to exit quiz creator
 function cancelQuiz(){
